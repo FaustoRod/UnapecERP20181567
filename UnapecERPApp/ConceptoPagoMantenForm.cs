@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UnapecERPApp.Services;
@@ -12,23 +6,18 @@ using UnapecErpData.Model;
 
 namespace UnapecERPApp
 {
-    public partial class Form1 : Form
+    public partial class ConceptoPagoMantenForm : Form
     {
         private bool IsCreate;
         private bool IsEdit;
         private ConceptoPagoService _conceptoPagoService = new ConceptoPagoService();
         private ConceptoPago _selectedConcepto;
-        public Form1()
+        public ConceptoPagoMantenForm()
         {
             InitializeComponent();
             LoadList();
         }
-
-        private async void button1_Click(object sender, EventArgs e)
-        {
-            await new ConceptoPagoService().Delete(2);
-        }
-
+        
         private async void button1_Click_1(object sender, EventArgs e)
         {
             if (IsCreate)

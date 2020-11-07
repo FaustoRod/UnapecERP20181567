@@ -1,6 +1,6 @@
 ﻿namespace UnapecERPApp
 {
-    partial class Form1
+    partial class ConceptoPagoMantenForm
     {
         /// <summary>
         /// Required designer variable.
@@ -229,7 +229,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "ConceptoPagoMantenForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento de Concepto de Pago";
