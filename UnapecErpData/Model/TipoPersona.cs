@@ -2,6 +2,6 @@
 {
     public class TipoPersona:BaseMantenimiento
     {
-        
+        public virtual Proveedor Proveedor { get; set; }
     }
 }
