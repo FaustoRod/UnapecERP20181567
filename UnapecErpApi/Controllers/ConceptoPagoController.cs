@@ -43,8 +43,9 @@ namespace UnapecErpApi.Controllers
         }
 
         // PUT api/<ConceptoPagoController>/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] ConceptoPago conceptoPago)
+        [HttpPut]
+        //[HttpPut("{id}")]
+        public async Task<IActionResult> Put([FromBody] ConceptoPago conceptoPago)
         {
             if (conceptoPago == null) return BadRequest();
             var result = await _service.Update(conceptoPago);

@@ -44,7 +44,16 @@ namespace UnapecErpApi.Services
             modelUpdate.Descripcion = entity.Descripcion;
             modelUpdate.FechaModificacion = DateTime.Now;
             _context.ConceptoPago.Update(modelUpdate);
-            return await _context.SaveChangesAsync() > 0;
+            try
+            {
+                return await _context.SaveChangesAsync() > 0;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
 
         public async Task<IList<ConceptoPago>> GetAll() => await _context.ConceptoPago.ToListAsync();
