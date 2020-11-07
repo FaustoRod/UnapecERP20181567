@@ -81,11 +81,19 @@ namespace UnapecErpApi.Services
 
         public async Task<IList<Proveedor>> SearchProveedor(ProvedorSearchDto provedorSearchDto)
         {
-            var list = await _context.Proveedores.Include(x => x.TipoPersona).Where(x => x.Activo 
-                                                                                         && ((!string.IsNullOrEmpty(provedorSearchDto.Nombre) && x.Nombre.Contains(provedorSearchDto.Nombre))
-                                                                                         || (!string.IsNullOrEmpty(provedorSearchDto.Documento) && x.Documento.Equals(provedorSearchDto.Documento)))
-                                                                                         && x.TipoPersonaId.Equals(provedorSearchDto.TipoId)).ToListAsync();
-            return list;
+            if (!string.IsNullOrEmpty(provedorSearchDto.Nombre))
+            {
+                return await _context.Proveedores.Include(x => x.TipoPersona).Where(x => x.Activo && x.Nombre.Contains(provedorSearchDto.Nombre))
+                    .ToListAsync();
+            }
+
+            if (!string.IsNullOrEmpty(provedorSearchDto.Documento))
+            {
+                return await _context.Proveedores.Include(x => x.TipoPersona).Where(x => x.Activo && x.Documento.Equals(provedorSearchDto.Documento))
+                    .ToListAsync();
+            }
+
+            return await GetAll();
         }
     }
 }

@@ -128,11 +128,23 @@
     <Compile Include="ConceptoPagoMantenForm.Designer.cs">
       <DependentUpon>ConceptoPagoMantenForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DocumentoCrearForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentoCrearForm.Designer.cs">
+      <DependentUpon>DocumentoCrearForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopUp\SearchProvedorPopUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopUp\SearchProvedorPopUp.Designer.cs">
+      <DependentUpon>SearchProvedorPopUp.cs</DependentUpon>
     </Compile>
     <Compile Include="ProveedorMantenForm.cs">
       <SubType>Form</SubType>
@@ -144,16 +156,20 @@
     <Compile Include="Interfaces\IBaseWebPoster.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DocumentoService.cs" />
     <Compile Include="Services\ProveedorService.cs" />
     <Compile Include="Utils\WebApiClient.cs" />
     <EmbeddedResource Include="ConceptoPagoMantenForm.resx">
       <DependentUpon>ConceptoPagoMantenForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DocumentoCrearForm.resx">
+      <DependentUpon>DocumentoCrearForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProveedorMantenForm.resx">
-      <DependentUpon>ProveedorMantenForm.cs</DependentUpon>
+    <EmbeddedResource Include="PopUp\SearchProvedorPopUp.resx">
+      <DependentUpon>SearchProvedorPopUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -165,6 +181,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ProveedorMantenForm.resx">
+      <DependentUpon>ProveedorMantenForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\UnapecErpData.Dto.ProveedorDto.datasource" />
     <None Include="Properties\DataSources\UnapecErpData.Model.ConceptoPago.datasource" />
@@ -191,6 +210,8 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Pictures\salesman.jpg" />
+    <None Include="Resources\payment.png" />
+    <None Include="Resources\search.png" />
     <None Include="Resources\gear.png" />
     <None Include="Resources\provedor.jpg" />
   </ItemGroup>

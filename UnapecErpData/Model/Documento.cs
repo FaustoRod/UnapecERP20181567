@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UnapecErpData.Model
@@ -12,6 +13,8 @@ namespace UnapecErpData.Model
         [Required]
         [MaxLength(8)]
         public string NumeroFactura { get; set; }
+        [Required]
+        public DateTime Fecha { get; set; }
         [Required]
         [Column(TypeName = "decimal(9,2)")]
         public decimal Monto { get; set; }
