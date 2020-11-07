@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UnapecErpApi.Context;
@@ -31,6 +32,7 @@ namespace UnapecErpApi.Services
             }
             catch (Exception e)
             {
+                var problem = e.InnerException;
                 return false;
             }
         }
@@ -50,9 +52,23 @@ namespace UnapecErpApi.Services
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task<IList<Proveedor>> GetAll() => await _context.Proveedores.ToListAsync();
+        public async Task<IList<Proveedor>> GetAll()
+        {
+            try
+            {
+                var list = await _context.Proveedores.Include(x => x.TipoPersona).Where(x => x.Activo).ToListAsync();
+                //var list = await _context.Proveedores.Include(x => x.TipoPersona).Where(x => x.Activo).ToListAsync();
+                return list;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            
+        }
 
-        public async Task<Proveedor> GetSingle(int id) => await _context.Proveedores.FindAsync(id);
+        public async Task<Proveedor> GetSingle(int id) => await _context.Proveedores.Include(x =>x.TipoPersona).Where(x => x.Activo && x.Id.Equals(id)).SingleOrDefaultAsync();
 
         public async Task<bool> Delete(int id)
         {

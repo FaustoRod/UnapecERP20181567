@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using UnapecErpData.Model;
 
 namespace UnapecERPApp.Interfaces
 {
@@ -9,7 +8,7 @@ namespace UnapecERPApp.Interfaces
         Task<bool> Create(T entity);
         Task <bool>Update(T entity);
         Task <bool>Delete(int id);
-        Task<ConceptoPago> GetSingle(int id);
-        Task<IList<ConceptoPago>> GetAll();
+        Task<T> GetSingle(int id);
+        Task<IList<T>> GetAll();
     }
 }

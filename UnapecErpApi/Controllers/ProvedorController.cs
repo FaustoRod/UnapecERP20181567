@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using UnapecErpApi.Interfaces;
@@ -23,7 +24,16 @@ namespace UnapecErpApi.Controllers
         [HttpGet]
         public async Task<IList<Proveedor>> Get()
         {
-            return await _service.GetAll();
+            try
+            {
+                return await _service.GetAll();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }   
         }
 
         // GET api/<ProvedorController>/5
@@ -43,8 +53,8 @@ namespace UnapecErpApi.Controllers
         }
 
         // PUT api/<ProvedorController>/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Proveedor proveedor)
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] Proveedor proveedor)
         {
             if (proveedor == null) return BadRequest();
             var result = await _service.Update(proveedor);

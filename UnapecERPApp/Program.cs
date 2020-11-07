@@ -16,7 +16,7 @@ namespace UnapecERPApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ConceptoPagoMantenForm());
+            Application.Run(new ProveedorMantenForm());
         }
     }
 }

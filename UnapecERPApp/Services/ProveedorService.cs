@@ -10,42 +10,42 @@ using UnapecErpData.Model;
 
 namespace UnapecERPApp.Services
 {
-    public class ConceptoPagoService:IBaseWebPoster<ConceptoPago>
+    public class ProveedorService:IBaseWebPoster<Proveedor>
     {
-        public async Task<bool> Create(ConceptoPago entity)
+        public async Task<bool> Create(Proveedor entity)
         {
             var content = JsonConvert.SerializeObject(entity);
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var result = await WebApiClient.Instance.PostAsync("/api/ConceptoPago/Crear", byteContent);
+            var result = await WebApiClient.Instance.PostAsync("/api/Provedor/Crear/", byteContent);
             return result.IsSuccessStatusCode;
         }
 
-        public async Task<bool> Update(ConceptoPago entity)
+        public async Task<bool> Update(Proveedor entity)
         {
             var content = JsonConvert.SerializeObject(entity);
             var buffer = System.Text.Encoding.UTF8.GetBytes(content);
             var byteContent = new ByteArrayContent(buffer);
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var result = await WebApiClient.Instance.PutAsync($"/api/ConceptoPago", byteContent);
+            var result = await WebApiClient.Instance.PutAsync($"/api/Provedor", byteContent);
             return result.IsSuccessStatusCode;
 
         }
 
         public async Task<bool> Delete(int id)
         {
-            var result = await WebApiClient.Instance.DeleteAsync(string.Format($"/api/ConceptoPago/{id}"));
+            var result = await WebApiClient.Instance.DeleteAsync(string.Format($"/api/Provedor/{id}"));
             return result.IsSuccessStatusCode;
 
         }
 
-        public async Task<ConceptoPago> GetSingle(int id)
+        public async Task<Proveedor> GetSingle(int id)
         {
-            var result = await WebApiClient.Instance.GetAsync($"/api/ConceptoPago/{id}");
+            var result = await WebApiClient.Instance.GetAsync($"/api/Provedor/{id}");
             if (result.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<ConceptoPago>(await result.Content.ReadAsStringAsync());
+                return JsonConvert.DeserializeObject<Proveedor>(await result.Content.ReadAsStringAsync());
             }
             else
             {
@@ -54,12 +54,12 @@ namespace UnapecERPApp.Services
             }
         }
 
-        public async Task<IList<ConceptoPago>> GetAll()
+        public async Task<IList<Proveedor>> GetAll()
         {
-            var result = await WebApiClient.Instance.GetAsync($"/api/ConceptoPago");
+            var result = await WebApiClient.Instance.GetAsync($"/api/Provedor");
             if (result.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<IList<ConceptoPago>>(await result.Content.ReadAsStringAsync());
+                return JsonConvert.DeserializeObject<IList<Proveedor>>(await result.Content.ReadAsStringAsync());
             }
 
             MessageBox.Show(result.StatusCode.ToString());

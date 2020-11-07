@@ -17,6 +17,7 @@ namespace UnapecErpData.Model
         public decimal Balance { get; set; }
         public bool Activo { get; set; }
         public virtual TipoPersona TipoPersona { get; set; }
+        public virtual string TipoPersonaNombre => TipoPersona?.Descripcion;
         public virtual List<Documento> Documentos { get; set; }
     }
 }
