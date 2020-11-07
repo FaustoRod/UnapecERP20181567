@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using UnapecERPApp.Interfaces;
 using UnapecERPApp.Utils;
+using UnapecErpData.Dto;
 using UnapecErpData.Model;
 
 namespace UnapecERPApp.Services
@@ -64,6 +65,15 @@ namespace UnapecERPApp.Services
 
             MessageBox.Show(result.StatusCode.ToString());
             return null;
+        }
+        public async Task<IList<Proveedor>> SearchAll(ProvedorSearchDto provedorSearch)
+        {
+            var content = JsonConvert.SerializeObject(provedorSearch);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = await WebApiClient.Instance.PostAsync("/api/Provedor/Search/", byteContent);
+            return result.IsSuccessStatusCode ? JsonConvert.DeserializeObject<IList<Proveedor>>(await result.Content.ReadAsStringAsync()) : new List<Proveedor>();
         }
     }
 }

@@ -31,6 +31,18 @@
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dtProveedor = new System.Windows.Forms.DataGridView();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoPersonaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.activoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tipoPersonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipoPersonaNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaCreacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaModificacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proveedorDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtBalance = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,22 +57,10 @@
             this.btnCrear = new System.Windows.Forms.Button();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.fechaModificacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaCreacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipoPersonaNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipoPersonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.activoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Balance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoPersonaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proveedorDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtProveedor)).BeginInit();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.proveedorDtoBindingSource)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -106,6 +106,116 @@
             this.dtProveedor.Size = new System.Drawing.Size(1573, 394);
             this.dtProveedor.TabIndex = 0;
             this.dtProveedor.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtConceptoPago_CellClick);
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // TipoNombre
+            // 
+            this.TipoNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TipoNombre.DataPropertyName = "TipoNombre";
+            this.TipoNombre.HeaderText = "Tipo";
+            this.TipoNombre.MinimumWidth = 6;
+            this.TipoNombre.Name = "TipoNombre";
+            this.TipoNombre.ReadOnly = true;
+            // 
+            // TipoPersonaId
+            // 
+            this.TipoPersonaId.DataPropertyName = "TipoPersonaId";
+            this.TipoPersonaId.HeaderText = "TipoPersonaId";
+            this.TipoPersonaId.MinimumWidth = 6;
+            this.TipoPersonaId.Name = "TipoPersonaId";
+            this.TipoPersonaId.ReadOnly = true;
+            this.TipoPersonaId.Visible = false;
+            this.TipoPersonaId.Width = 125;
+            // 
+            // Documento
+            // 
+            this.Documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Documento.DataPropertyName = "Documento";
+            this.Documento.HeaderText = "Documento";
+            this.Documento.MinimumWidth = 6;
+            this.Documento.Name = "Documento";
+            this.Documento.ReadOnly = true;
+            // 
+            // Balance
+            // 
+            this.Balance.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Balance.DataPropertyName = "Balance";
+            this.Balance.HeaderText = "Balance";
+            this.Balance.MinimumWidth = 6;
+            this.Balance.Name = "Balance";
+            this.Balance.ReadOnly = true;
+            // 
+            // activoDataGridViewCheckBoxColumn
+            // 
+            this.activoDataGridViewCheckBoxColumn.DataPropertyName = "Activo";
+            this.activoDataGridViewCheckBoxColumn.HeaderText = "Activo";
+            this.activoDataGridViewCheckBoxColumn.MinimumWidth = 6;
+            this.activoDataGridViewCheckBoxColumn.Name = "activoDataGridViewCheckBoxColumn";
+            this.activoDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.activoDataGridViewCheckBoxColumn.Visible = false;
+            this.activoDataGridViewCheckBoxColumn.Width = 125;
+            // 
+            // tipoPersonaDataGridViewTextBoxColumn
+            // 
+            this.tipoPersonaDataGridViewTextBoxColumn.DataPropertyName = "TipoPersona";
+            this.tipoPersonaDataGridViewTextBoxColumn.HeaderText = "TipoPersona";
+            this.tipoPersonaDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.tipoPersonaDataGridViewTextBoxColumn.Name = "tipoPersonaDataGridViewTextBoxColumn";
+            this.tipoPersonaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tipoPersonaDataGridViewTextBoxColumn.Visible = false;
+            this.tipoPersonaDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // tipoPersonaNombreDataGridViewTextBoxColumn
+            // 
+            this.tipoPersonaNombreDataGridViewTextBoxColumn.DataPropertyName = "TipoPersonaNombre";
+            this.tipoPersonaNombreDataGridViewTextBoxColumn.HeaderText = "TipoPersonaNombre";
+            this.tipoPersonaNombreDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.tipoPersonaNombreDataGridViewTextBoxColumn.Name = "tipoPersonaNombreDataGridViewTextBoxColumn";
+            this.tipoPersonaNombreDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tipoPersonaNombreDataGridViewTextBoxColumn.Visible = false;
+            this.tipoPersonaNombreDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            this.Id.Width = 125;
+            // 
+            // fechaCreacionDataGridViewTextBoxColumn
+            // 
+            this.fechaCreacionDataGridViewTextBoxColumn.DataPropertyName = "FechaCreacion";
+            this.fechaCreacionDataGridViewTextBoxColumn.HeaderText = "FechaCreacion";
+            this.fechaCreacionDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.fechaCreacionDataGridViewTextBoxColumn.Name = "fechaCreacionDataGridViewTextBoxColumn";
+            this.fechaCreacionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fechaCreacionDataGridViewTextBoxColumn.Visible = false;
+            this.fechaCreacionDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // fechaModificacionDataGridViewTextBoxColumn
+            // 
+            this.fechaModificacionDataGridViewTextBoxColumn.DataPropertyName = "FechaModificacion";
+            this.fechaModificacionDataGridViewTextBoxColumn.HeaderText = "FechaModificacion";
+            this.fechaModificacionDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.fechaModificacionDataGridViewTextBoxColumn.Name = "fechaModificacionDataGridViewTextBoxColumn";
+            this.fechaModificacionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fechaModificacionDataGridViewTextBoxColumn.Visible = false;
+            this.fechaModificacionDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // proveedorDtoBindingSource
+            // 
+            this.proveedorDtoBindingSource.DataSource = typeof(UnapecErpData.Dto.ProveedorDto);
             // 
             // panel1
             // 
@@ -158,6 +268,7 @@
             this.btnBuscar.TabIndex = 10;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // txtDocumento
             // 
@@ -168,6 +279,7 @@
             this.txtDocumento.Name = "txtDocumento";
             this.txtDocumento.Size = new System.Drawing.Size(353, 36);
             this.txtDocumento.TabIndex = 9;
+            this.txtDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocumento_KeyPress);
             // 
             // label3
             // 
@@ -265,116 +377,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
-            // fechaModificacionDataGridViewTextBoxColumn
-            // 
-            this.fechaModificacionDataGridViewTextBoxColumn.DataPropertyName = "FechaModificacion";
-            this.fechaModificacionDataGridViewTextBoxColumn.HeaderText = "FechaModificacion";
-            this.fechaModificacionDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.fechaModificacionDataGridViewTextBoxColumn.Name = "fechaModificacionDataGridViewTextBoxColumn";
-            this.fechaModificacionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fechaModificacionDataGridViewTextBoxColumn.Visible = false;
-            this.fechaModificacionDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // fechaCreacionDataGridViewTextBoxColumn
-            // 
-            this.fechaCreacionDataGridViewTextBoxColumn.DataPropertyName = "FechaCreacion";
-            this.fechaCreacionDataGridViewTextBoxColumn.HeaderText = "FechaCreacion";
-            this.fechaCreacionDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.fechaCreacionDataGridViewTextBoxColumn.Name = "fechaCreacionDataGridViewTextBoxColumn";
-            this.fechaCreacionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fechaCreacionDataGridViewTextBoxColumn.Visible = false;
-            this.fechaCreacionDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            this.Id.Width = 125;
-            // 
-            // tipoPersonaNombreDataGridViewTextBoxColumn
-            // 
-            this.tipoPersonaNombreDataGridViewTextBoxColumn.DataPropertyName = "TipoPersonaNombre";
-            this.tipoPersonaNombreDataGridViewTextBoxColumn.HeaderText = "TipoPersonaNombre";
-            this.tipoPersonaNombreDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.tipoPersonaNombreDataGridViewTextBoxColumn.Name = "tipoPersonaNombreDataGridViewTextBoxColumn";
-            this.tipoPersonaNombreDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tipoPersonaNombreDataGridViewTextBoxColumn.Visible = false;
-            this.tipoPersonaNombreDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // tipoPersonaDataGridViewTextBoxColumn
-            // 
-            this.tipoPersonaDataGridViewTextBoxColumn.DataPropertyName = "TipoPersona";
-            this.tipoPersonaDataGridViewTextBoxColumn.HeaderText = "TipoPersona";
-            this.tipoPersonaDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.tipoPersonaDataGridViewTextBoxColumn.Name = "tipoPersonaDataGridViewTextBoxColumn";
-            this.tipoPersonaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tipoPersonaDataGridViewTextBoxColumn.Visible = false;
-            this.tipoPersonaDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // activoDataGridViewCheckBoxColumn
-            // 
-            this.activoDataGridViewCheckBoxColumn.DataPropertyName = "Activo";
-            this.activoDataGridViewCheckBoxColumn.HeaderText = "Activo";
-            this.activoDataGridViewCheckBoxColumn.MinimumWidth = 6;
-            this.activoDataGridViewCheckBoxColumn.Name = "activoDataGridViewCheckBoxColumn";
-            this.activoDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.activoDataGridViewCheckBoxColumn.Visible = false;
-            this.activoDataGridViewCheckBoxColumn.Width = 125;
-            // 
-            // Balance
-            // 
-            this.Balance.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Balance.DataPropertyName = "Balance";
-            this.Balance.HeaderText = "Balance";
-            this.Balance.MinimumWidth = 6;
-            this.Balance.Name = "Balance";
-            this.Balance.ReadOnly = true;
-            // 
-            // Documento
-            // 
-            this.Documento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Documento.DataPropertyName = "Documento";
-            this.Documento.HeaderText = "Documento";
-            this.Documento.MinimumWidth = 6;
-            this.Documento.Name = "Documento";
-            this.Documento.ReadOnly = true;
-            // 
-            // TipoPersonaId
-            // 
-            this.TipoPersonaId.DataPropertyName = "TipoPersonaId";
-            this.TipoPersonaId.HeaderText = "TipoPersonaId";
-            this.TipoPersonaId.MinimumWidth = 6;
-            this.TipoPersonaId.Name = "TipoPersonaId";
-            this.TipoPersonaId.ReadOnly = true;
-            this.TipoPersonaId.Visible = false;
-            this.TipoPersonaId.Width = 125;
-            // 
-            // TipoNombre
-            // 
-            this.TipoNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TipoNombre.DataPropertyName = "TipoNombre";
-            this.TipoNombre.HeaderText = "Tipo";
-            this.TipoNombre.MinimumWidth = 6;
-            this.TipoNombre.Name = "TipoNombre";
-            this.TipoNombre.ReadOnly = true;
-            // 
-            // Nombre
-            // 
-            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // proveedorDtoBindingSource
-            // 
-            this.proveedorDtoBindingSource.DataSource = typeof(UnapecErpData.Dto.ProveedorDto);
-            // 
             // ProveedorMantenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -390,9 +392,9 @@
             this.Text = "Mantenimiento de Concepto de Pago";
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtProveedor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.proveedorDtoBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.proveedorDtoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

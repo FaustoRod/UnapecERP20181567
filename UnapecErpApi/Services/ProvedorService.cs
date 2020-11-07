@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UnapecErpApi.Context;
 using UnapecErpApi.Interfaces;
+using UnapecErpData.Dto;
 using UnapecErpData.Model;
 
 namespace UnapecErpApi.Services
 {
-    public class ProvedorService:IProvedorService
+    public class ProvedorService : IProvedorService
     {
         private readonly ErpDbContext _context;
 
@@ -65,10 +66,10 @@ namespace UnapecErpApi.Services
                 Console.WriteLine(e);
                 return null;
             }
-            
+
         }
 
-        public async Task<Proveedor> GetSingle(int id) => await _context.Proveedores.Include(x =>x.TipoPersona).Where(x => x.Activo && x.Id.Equals(id)).SingleOrDefaultAsync();
+        public async Task<Proveedor> GetSingle(int id) => await _context.Proveedores.Include(x => x.TipoPersona).Where(x => x.Activo && x.Id.Equals(id)).SingleOrDefaultAsync();
 
         public async Task<bool> Delete(int id)
         {
@@ -76,6 +77,15 @@ namespace UnapecErpApi.Services
             if (entity == null) return false;
             entity.Activo = false;
             return await Update(entity);
+        }
+
+        public async Task<IList<Proveedor>> SearchProveedor(ProvedorSearchDto provedorSearchDto)
+        {
+            var list = await _context.Proveedores.Include(x => x.TipoPersona).Where(x => x.Activo 
+                                                                                         && ((!string.IsNullOrEmpty(provedorSearchDto.Nombre) && x.Nombre.Contains(provedorSearchDto.Nombre))
+                                                                                         || (!string.IsNullOrEmpty(provedorSearchDto.Documento) && x.Documento.Equals(provedorSearchDto.Documento)))
+                                                                                         && x.TipoPersonaId.Equals(provedorSearchDto.TipoId)).ToListAsync();
+            return list;
         }
     }
 }

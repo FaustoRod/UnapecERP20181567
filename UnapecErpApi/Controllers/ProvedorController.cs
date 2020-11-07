@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using UnapecErpApi.Interfaces;
+using UnapecErpData.Dto;
 using UnapecErpData.Model;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -41,6 +42,13 @@ namespace UnapecErpApi.Controllers
         public async Task<Proveedor> Get(int id)
         {
             return await _service.GetSingle(id);
+        }
+
+        // GET api/<ProvedorController>/5
+        [HttpPost("Search")]
+        public async Task<IList<Proveedor>> GetProvedores([FromBody] ProvedorSearchDto proveedor)
+        {
+            return await _service.SearchProveedor(proveedor);
         }
 
         // POST api/<ProvedorController>

@@ -84,7 +84,23 @@ namespace UnapecERPApp
 
                 if (string.IsNullOrEmpty(txtDocumento.Text.Trim()))
                 {
-                    MessageBox.Show("Dpcumento Obligatorio", String.Empty, MessageBoxButtons.OK,
+                    MessageBox.Show("Documento Obligatorio", String.Empty, MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    txtDocumento.Focus();
+                    return;
+                }
+
+                if (!txtDocumento.Text.Trim().Length.Equals(11) && !txtDocumento.Text.Trim().Length.Equals(9))
+                {
+                    MessageBox.Show("Numero de Documento Invalido", String.Empty, MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    txtDocumento.Focus();
+                    return;
+                }
+
+                if (txtDocumento.Text.Trim().Length.Equals(11) && !ValidarCedula(txtDocumento.Text.Trim()))
+                {
+                    MessageBox.Show("Numero de Cedula Invalida", String.Empty, MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     txtDocumento.Focus();
                     return;
@@ -278,6 +294,43 @@ namespace UnapecERPApp
             {
                 MessageBox.Show("Seleccione Concepto a Eliminar");
             }
+
+        }
+
+        private void txtDocumento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private bool ValidarCedula(string pCedula)
+        {
+            int vnTotal = 0;
+            string vcCedula = pCedula.Replace("-", "");
+            int pLongCed = vcCedula.Trim().Length;
+            int[] digitoMult = new int[11] { 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1 };
+            if (pLongCed < 11 || pLongCed > 11)
+                return false;
+            for (int vDig = 1; vDig <= pLongCed; vDig++)
+            {
+                int vCalculo = Int32.Parse(vcCedula.Substring(vDig - 1, 1)) * digitoMult[vDig - 1];
+                if (vCalculo < 10)
+                    vnTotal += vCalculo;
+                else
+                    vnTotal += Int32.Parse(vCalculo.ToString().Substring(0, 1)) + Int32.Parse(vCalculo.ToString().Substring(1, 1));
+            }
+            if (vnTotal % 10 == 0)
+                return true;
+            else
+                return false;
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SearchProveedor()
+        {
 
         }
     }

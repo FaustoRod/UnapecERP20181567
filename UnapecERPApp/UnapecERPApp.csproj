@@ -124,6 +124,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConceptoPagoMantenForm.cs" />
+    <Compile Include="ConceptoPagoMantenForm.Designer.cs">
+      <DependentUpon>ConceptoPagoMantenForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProveedorMantenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +146,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ProveedorService.cs" />
     <Compile Include="Utils\WebApiClient.cs" />
+    <EmbeddedResource Include="ConceptoPagoMantenForm.resx">
+      <DependentUpon>ConceptoPagoMantenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProveedorMantenForm.resx">
       <DependentUpon>ProveedorMantenForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +163,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\UnapecErpData.Dto.ProveedorDto.datasource" />
@@ -170,6 +187,12 @@
       <Project>{7f795739-5913-4e46-89ca-7511718e7b53}</Project>
       <Name>UnapecErpData</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Pictures\salesman.jpg" />
+    <None Include="Resources\gear.png" />
+    <None Include="Resources\provedor.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
