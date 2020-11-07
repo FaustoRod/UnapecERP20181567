@@ -36,7 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.btnCrear = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.activoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,7 +96,7 @@
             // 
             this.panel1.Controls.Add(this.btnLimpiar);
             this.panel1.Controls.Add(this.btnDelete);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.btnModificar);
             this.panel1.Controls.Add(this.btnCrear);
             this.panel1.Controls.Add(this.txtDescripcion);
             this.panel1.Controls.Add(this.label1);
@@ -138,15 +138,16 @@
             this.btnCrear.UseVisualStyleBackColor = true;
             this.btnCrear.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // button2
+            // btnModificar
             // 
-            this.button2.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(818, 19);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(138, 46);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Modificar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnModificar.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.Location = new System.Drawing.Point(818, 19);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(138, 46);
+            this.btnModificar.TabIndex = 3;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.button2_Click);
             // 
             // Descripcion
             // 
@@ -205,6 +206,7 @@
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Borrar";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnLimpiar
             // 
@@ -224,8 +226,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1097, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Mantenimiento de Concepto de Pago";
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtConceptoPago)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.conceptoPagoBindingSource)).EndInit();
@@ -241,7 +248,7 @@
         private System.Windows.Forms.DataGridView dtConceptoPago;
         private System.Windows.Forms.BindingSource conceptoPagoBindingSource;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnCrear;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label1;

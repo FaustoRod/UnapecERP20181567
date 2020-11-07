@@ -56,7 +56,7 @@ namespace UnapecErpApi.Services
             }
         }
 
-        public async Task<IList<ConceptoPago>> GetAll() => await _context.ConceptoPago.ToListAsync();
+        public async Task<IList<ConceptoPago>> GetAll() => await _context.ConceptoPago.Where(x =>x.Activo).ToListAsync();
         
         public async Task<ConceptoPago> GetSingle(int id) => await _context.ConceptoPago.Where(x => x.Id.Equals(id)).SingleOrDefaultAsync();
 
