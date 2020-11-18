@@ -128,12 +128,14 @@ namespace UnapecERPApp
                 var result = await _conceptoPagoService.Update(new ConceptoPago
                 {
                     Descripcion = txtDescripcion.Text,
-                    Id = _selectedConcepto.Id
+                    Id = _selectedConcepto.Id,
+                    Activo = true
                 });
                 if (result)
                 {
                     MessageBox.Show("Concepto de Pago Modificado con Exito", String.Empty, MessageBoxButtons.OK, MessageBoxIcon.None);
                     EditMode(false);
+                    LoadList();
                 }
                 else
                 {

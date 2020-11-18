@@ -138,17 +138,16 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(260, 219);
             this.panel4.TabIndex = 3;
-            this.panel4.Visible = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(76, 170);
+            this.label4.Location = new System.Drawing.Point(33, 170);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 29);
+            this.label4.Size = new System.Drawing.Size(188, 29);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Provedor";
+            this.label4.Text = "Lista Documentos";
             // 
             // panel3
             // 
@@ -235,13 +234,14 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::UnapecERPApp.Properties.Resources.gear;
+            this.pictureBox4.Image = global::UnapecERPApp.Properties.Resources.payment;
             this.pictureBox4.Location = new System.Drawing.Point(48, 28);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(156, 129);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 1;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox3
             // 

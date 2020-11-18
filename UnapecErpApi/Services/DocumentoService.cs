@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UnapecErpApi.Context;
 using UnapecErpApi.Interfaces;
+using UnapecErpData.Dto;
 using UnapecErpData.Model;
 using EstadoDocumento = UnapecErpData.Enums.EstadoDocumento;
 
@@ -70,6 +72,46 @@ namespace UnapecErpApi.Services
         public Task<bool> Delete(int id)
         {
             throw new System.NotImplementedException();
+        }
+
+        public async Task<bool> Pagar(int id)
+        {
+            var documento = await GetSingle(id);
+            if (documento == null) return false;
+            documento.EstadoDocumentoId = (int)EstadoDocumento.Pagado;
+            var result = await Update(documento);
+            if (result)
+            {
+                var provedor = await _provedorService.GetSingle(documento.ProveedorId);
+                if (provedor != null)
+                {
+                    provedor.Balance -= documento.Monto;
+                    return await _provedorService.Update(provedor);
+                }
+            }
+            return result;
+        }
+
+        public async Task<IList<Documento>> SearchDocumentos(DocumentSearchDto documento)
+        {
+            if(documento == null) return new List<Documento>();
+            if (!string.IsNullOrEmpty(documento.Numero))
+            {
+                return await _context.Documentos.Where(x => x.Numero.Contains(documento.Numero)).ToListAsync();
+            }
+
+            if (!string.IsNullOrEmpty(documento.NumeroFactura))
+            {
+                return await _context.Documentos.Where(x => x.NumeroFactura.Contains(documento.NumeroFactura)).ToListAsync();
+            }
+
+            if (documento.ProveedorId > 0)
+            {
+                return await _context.Documentos.Where(x => x.ProveedorId.Equals(documento.ProveedorId)).ToListAsync();
+            }
+
+            return await _context.Documentos.Where(x => documento.EstadoDocumentoId == (int)EstadoDocumento.Todos || x.EstadoDocumentoId.Equals(documento.EstadoDocumentoId)).ToListAsync();
+
         }
     }
 }

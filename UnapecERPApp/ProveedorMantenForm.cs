@@ -324,13 +324,40 @@ namespace UnapecERPApp
                 return false;
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private async void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            await SearchProveedor();
         }
-
-        private void SearchProveedor()
+        private async Task SearchProveedor()
         {
+            btnBuscar.Enabled = false;
+            var list = await _proveedorPagoService.SearchAll(new ProvedorSearchDto
+            {
+                Documento = txtDocumento.Text.Trim(),
+                TipoId = (int)cbTipoPersona.SelectedValue,
+                Nombre = txtNombre.Text
+            });
+            btnBuscar.Enabled = true;
+
+            if (list != null && list.Any())
+            {
+                var newList = new List<ProveedorDto>();
+                foreach (var proveedor in list)
+                {
+                    newList.Add(new ProveedorDto
+                    {
+                        Documento = proveedor.Documento,
+                        Balance = proveedor.Balance,
+                        Id = proveedor.Id,
+                        TipoPersonaId = proveedor.TipoPersonaId,
+                        TipoNombre = proveedor.TipoPersona?.Descripcion,
+                        Nombre = proveedor.Nombre
+
+                    });
+                }
+
+                dtProveedor.DataSource = newList;
+            }
 
         }
     }

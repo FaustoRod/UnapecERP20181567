@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using UnapecErpApi.Interfaces;
+using UnapecErpData.Dto;
 using UnapecErpData.Model;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -40,6 +42,18 @@ namespace UnapecErpApi.Controllers
             if (documento == null) return NotFound();
             var result = await _service.Save(documento);
             return result ? (IActionResult)Ok() : BadRequest();
+        }
+
+        [HttpPost("Pagar/{id}")]
+        public async Task<IActionResult> Pagar(int id)
+        {
+            var result = await _service.Pagar(id);
+            return result ? (IActionResult)Ok() : BadRequest();
+        }
+        [HttpPost("Buscar")]
+        public async Task<IList<Documento>> PostBuscar([FromBody] DocumentSearchDto documento)
+        {
+            return await _service.SearchDocumentos(documento);
         }
 
         // PUT api/<DocumentoController>/5

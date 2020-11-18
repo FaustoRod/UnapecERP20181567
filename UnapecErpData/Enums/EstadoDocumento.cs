@@ -2,7 +2,8 @@
 {
     public enum EstadoDocumento
     {
-        Pendiente = 1,
+        Todos = 0,
+        Pendiente,
         Pagado
     }
 }

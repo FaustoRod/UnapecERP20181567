@@ -31,5 +31,10 @@ namespace UnapecERPApp
         {
             new DocumentoCrearForm().ShowDialog();
         }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            new DocumentoMantenForm().ShowDialog();
+        }
     }
 }

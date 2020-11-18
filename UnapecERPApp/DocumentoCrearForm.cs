@@ -127,7 +127,8 @@ namespace UnapecERPApp
 
                 if (result)
                 {
-                    Clean();
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
             }
         }

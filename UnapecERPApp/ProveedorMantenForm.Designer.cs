@@ -389,7 +389,7 @@
             this.Name = "ProveedorMantenForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Mantenimiento de Concepto de Pago";
+            this.Text = "Mantenimiento de Provedor";
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtProveedor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.proveedorDtoBindingSource)).EndInit();

@@ -146,6 +146,12 @@
     <Compile Include="PopUp\SearchProvedorPopUp.Designer.cs">
       <DependentUpon>SearchProvedorPopUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="DocumentoMantenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentoMantenForm.Designer.cs">
+      <DependentUpon>DocumentoMantenForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProveedorMantenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,12 +187,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="DocumentoMantenForm.resx">
+      <DependentUpon>DocumentoMantenForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProveedorMantenForm.resx">
       <DependentUpon>ProveedorMantenForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\UnapecErpData.Dto.ProveedorDto.datasource" />
     <None Include="Properties\DataSources\UnapecErpData.Model.ConceptoPago.datasource" />
+    <None Include="Properties\DataSources\UnapecErpData.Model.Documento.datasource" />
     <None Include="Properties\DataSources\UnapecErpData.Model.Proveedor.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
