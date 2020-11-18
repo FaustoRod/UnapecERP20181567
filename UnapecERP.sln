@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnapecERPApp", "UnapecERPApp\UnapecERPApp.csproj", "{A4A13F06-4F40-4DE0-8C36-441D2F5C1EE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnapecErpData", "UnapecErpData\UnapecErpData.csproj", "{7F795739-5913-4E46-89CA-7511718E7B53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnapecErpData", "UnapecErpData\UnapecErpData.csproj", "{7F795739-5913-4E46-89CA-7511718E7B53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnapecErpApi", "UnapecErpApi\UnapecErpApi.csproj", "{9E907974-0412-4802-9411-8638E07A9139}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnapecErpApi", "UnapecErpApi\UnapecErpApi.csproj", "{9E907974-0412-4802-9411-8638E07A9139}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
