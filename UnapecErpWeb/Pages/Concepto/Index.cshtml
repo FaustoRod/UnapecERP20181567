@@ -1,0 +1,49 @@
+﻿@page
+@using UnapecErpData.Model
+@model UnapecErpWeb.Pages.Concepto.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Conceptos de Pago</h1>
+
+<p>
+    <button class="btn btn-primary" id="btnCrearConceptop" data-toggle='modal' data-target='#crearConceptoModal'>Crear Concepto</button>
+</p>
+<table class="table" >
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ConceptoPago[0].Descripcion)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="conceptosList">
+    @if (Model.ConceptoPago != null && Model.ConceptoPago.Any())
+    {
+        foreach (var item in Model.ConceptoPago)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+@{
+    Html.RenderPartial($"_Create",new ConceptoPago());
+}
+
+@section Scripts
+{
+    <script src="/js/ConceptoPago.js"></script>
+}

@@ -40,6 +40,7 @@ namespace UnapecErpApi.Services
             if (entity == null) return false;
             var modelUpdate = await GetSingle(entity.Id);
             if (modelUpdate == null) return false;
+            if (_context.ConceptoPago.Any(x => x.Descripcion.Equals(entity.Descripcion))) return false;
             modelUpdate.Activo = entity.Activo;
             modelUpdate.Descripcion = entity.Descripcion;
             modelUpdate.FechaModificacion = DateTime.Now;

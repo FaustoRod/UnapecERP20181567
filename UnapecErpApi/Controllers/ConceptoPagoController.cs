@@ -28,17 +28,17 @@ namespace UnapecErpApi.Controllers
 
         // GET api/<ConceptoPagoController>/5
         [HttpGet("{id}")]
-        public async Task<ConceptoPago> Get(int id)
+        public IActionResult Get(int id)
         {
-            return await _service.GetSingle(id);
+            return new JsonResult(_service.GetSingle(id));
         }
 
         // POST api/<ConceptoPagoController>
         [HttpPost("Crear")]
-        public async Task<IActionResult> Post([FromBody] ConceptoPago conceptoPago)
+        public async Task<IActionResult> Post([FromBody] string conceptoPago)
         {
-            if(conceptoPago == null) return NotFound();
-            var result = await _service.Save(conceptoPago);
+            if(string.IsNullOrEmpty(conceptoPago)) return NotFound();
+            var result = await _service.Save(new ConceptoPago{Descripcion = conceptoPago});
             return result ? (IActionResult) Ok() : BadRequest();
         }
 
