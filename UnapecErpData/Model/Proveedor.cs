@@ -19,5 +19,6 @@ namespace UnapecErpData.Model
         public virtual TipoPersona TipoPersona { get; set; }
         public virtual string TipoPersonaNombre => TipoPersona?.Descripcion;
         public virtual List<Documento> Documentos { get; set; }
+        public virtual string TipoPersonaName => TipoPersona != null ? TipoPersona.Descripcion : "";
     }
 }

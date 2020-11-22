@@ -15,5 +15,7 @@ namespace UnapecErpWeb.Data
         }
 
         public DbSet<UnapecErpData.Model.ConceptoPago> ConceptoPago { get; set; }
+
+        public DbSet<UnapecErpData.Model.Proveedor> Proveedor { get; set; }
     }
 }

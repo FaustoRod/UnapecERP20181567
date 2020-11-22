@@ -1,0 +1,36 @@
+﻿@page
+@model UnapecErpWeb.Pages.Proveedor.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Proveedores</h1>
+
+<p>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Proveedor[0].Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proveedor[0].TipoPersona)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proveedor[0].Documento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proveedor[0].Balance)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="provedorList">
+    </tbody>
+</table>
+
+@section Scripts{
+    <script src="js/Proveedor.js"></script>
+}

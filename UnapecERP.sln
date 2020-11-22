@@ -9,9 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnapecErpData", "UnapecErpD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnapecErpApi", "UnapecErpApi\UnapecErpApi.csproj", "{9E907974-0412-4802-9411-8638E07A9139}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnapecErpWeb", "UnapecErpWeb\UnapecErpWeb.csproj", "{E0C66A77-911E-4E3E-B7B3-970D3180B61F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnapecErpBussiness", "UnapecErpBussiness\UnapecErpBussiness.csproj", "{FA4F7E7E-BF3A-4AD7-A394-79177D3E1CC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnapecErpWeb", "UnapecErpWeb\UnapecErpWeb.csproj", "{E0C66A77-911E-4E3E-B7B3-970D3180B61F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{E0C66A77-911E-4E3E-B7B3-970D3180B61F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0C66A77-911E-4E3E-B7B3-970D3180B61F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0C66A77-911E-4E3E-B7B3-970D3180B61F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA4F7E7E-BF3A-4AD7-A394-79177D3E1CC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA4F7E7E-BF3A-4AD7-A394-79177D3E1CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA4F7E7E-BF3A-4AD7-A394-79177D3E1CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA4F7E7E-BF3A-4AD7-A394-79177D3E1CC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

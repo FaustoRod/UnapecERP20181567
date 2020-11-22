@@ -43,6 +43,7 @@ namespace UnapecErpApi
             services.AddTransient<IConceptoPagoService, ConceptoPagoService>();
             services.AddTransient<IProvedorService, ProvedorService>();
             services.AddTransient<IDocumentoService, DocumentoService>();
+            services.AddTransient<ITipoPersonaService, TipoPersonaService>();
 
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
