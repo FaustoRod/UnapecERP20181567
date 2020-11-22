@@ -6,24 +6,21 @@
             $("#Nombre").val("");
             $("#Documento").val("");
             $("#Id").val(0);
-
-            var button = $(e.relatedTarget);
-            //button.data('nombre').text = "";
-            //button.data('id').text = "";
-            //button.data('tipoPersonaId').text = "";
-
         });
 
     $("#crearProveedorModal").on("show.bs.modal",
         function (e) {
             var button = $(e.relatedTarget);
-            console.log(button);// Button that triggered the modal
-            var name = button.data('nombre');// Extract info from data-* attributes
+            var name = button.data('nombre');
 
             $("#Id").val(button.data("id"));
-            console.log($("#Id").val() + "------------------->>>");
             $("#Nombre").val(name);
+            $("#Documento").val(button.data('documento'));
+            $("#TipoPersonaId").val(button.data('tipoid'));
 
+            if ($("#TipoPersonaId").val() === "" || $("#TipoPersonaId").val() === null || $("#TipoPersonaId").val() === 0) {
+                $("#TipoPersonaId").val(1);
+            }
         });
 });
 
@@ -103,7 +100,7 @@ function getDataFields(id, text) {
 
 function getEditButton(item) {
     if (item.id > 0) {
-        return "<button type='button' id='editButton' class='btn btn-primary' data-toggle='modal' data-target='#crearProveedorModal' data-id='" + item.id + "' data-nombre='" + item.nombre + "' data-tipoId='" + item.tipoPersonaId + "'>Editar</button>";
+        return "<button type='button' id='editButton' class='btn btn-primary' data-toggle='modal' data-target='#crearProveedorModal' data-id='" + item.id + "' data-nombre='" + item.nombre + "' data-tipoId='" + item.tipoPersonaId + "' data-documento='"+ item.documento +"'>Editar</button>";
     }
 
     return "";
@@ -176,7 +173,6 @@ function getConcepto(id) {
     $.get("https://localhost:5001/api/ConceptoPago/" + id, function (data) {
         //console.log(data[0].descripcion);
         //alert(data);
-        console.log(data);
 
     });
 }
