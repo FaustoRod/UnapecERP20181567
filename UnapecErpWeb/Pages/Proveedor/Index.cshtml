@@ -1,4 +1,5 @@
 ﻿@page
+@using UnapecErpData.Model
 @model UnapecErpWeb.Pages.Proveedor.IndexModel
 
 @{
@@ -8,28 +9,34 @@
 <h1>Proveedores</h1>
 
 <p>
+    <button class="btn btn-primary" id="btnCrearProveedor" data-toggle='modal' data-target='#crearProveedorModal'>Crear Proveedor</button>
+
 </p>
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Proveedor[0].Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Proveedor[0].TipoPersona)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Proveedor[0].Documento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Proveedor[0].Balance)
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor[0].TipoPersona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor[0].Documento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor[0].Balance)
+            </th>
+            <th></th>
+        </tr>
     </thead>
     <tbody id="provedorList">
     </tbody>
 </table>
+@{
+    Html.RenderPartial("_Create",new Proveedor());
+}
+
 
 @section Scripts{
     <script src="js/Proveedor.js"></script>

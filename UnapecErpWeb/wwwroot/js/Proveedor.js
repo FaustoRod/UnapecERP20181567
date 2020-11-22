@@ -1,30 +1,28 @@
 ﻿$(document).ready(function () {
     getConceptoPagos();
 
-    $("#crearConceptoModal").on("hidden.bs.modal",
+    $("#crearProveedorModal").on("hidden.bs.modal",
         function (e) {
-            $("#Descripcion").val("");
-            var button = $(e.relatedTarget);
-            button.data('descripcion').text = "";
-            button.data('id').text = "";
+            $("#Nombre").val("");
+            $("#Documento").val("");
             $("#Id").val(0);
 
+            var button = $(e.relatedTarget);
+            //button.data('nombre').text = "";
+            //button.data('id').text = "";
+            //button.data('tipoPersonaId').text = "";
 
         });
 
-    $("#crearConceptoModal").on("show.bs.modal",
+    $("#crearProveedorModal").on("show.bs.modal",
         function (e) {
             var button = $(e.relatedTarget);
             console.log(button);// Button that triggered the modal
-            var name = button.data('name');// Extract info from data-* attributes
-            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            var modal = $(this);
-            console.log(name);
-            console.log(button.data("id"));
+            var name = button.data('nombre');// Extract info from data-* attributes
+
             $("#Id").val(button.data("id"));
             console.log($("#Id").val() + "------------------->>>");
-            $("#Descripcion").val(name);
+            $("#Nombre").val(name);
 
         });
 });
@@ -35,36 +33,35 @@ function getConceptoPagos() {
         //alert(data);
         $("#provedorList").empty();
         $("#provedorList").html(getTableBody(data));
-        
+
     });
 
 }
 
-function createConceptoPago() {
-    var descripcion = $("#Descripcion").val();
-
+function createProveedor() {
     var id = $("#Id").val();
-    var name = $("#Descripcion").val();
-    console.log($("#Id").val() + "     -     dhsssssssssssdddddddddddddddddddddddddddddddddddddddd");
+    var name = $("#Nombre").val();
+    var tipoPersona = $("#TipoPersonaId").val();
+    var documento = $("#Documento").val();
     //console.log(name);
     //console.log(id.length);
     if (id.length > 0) {
         $.ajax({
             type: 'PUT',
-            url: "https://localhost:5001/api/ConceptoPago/",
-            data: JSON.stringify({ id: id, descripcion: name, activo:true}),
+            url: "https://localhost:5001/api/Provedor/",
+            data: JSON.stringify({ id: id, nombre: name, activo: true, tipoPersonaId: tipoPersona, documento: documento }),
             contentType: "application/json",
             dataType: "json",
             statusCode: {
                 200: function () {
                     console.log("OK");
-                    swal("Exito", "Concepto Modificado", "success");
-                    $('#crearConceptoModal').modal('hide');
+                    swal("Exito", "Proveedor Modificado", "success");
+                    $('#crearProveedorModal').modal('hide');
                     getConceptoPagos();
 
                 },
                 400: function () {
-                    swal("Error", "Fallo al Modificar Concepto", "error");
+                    swal("Error", "Fallo al Modificar Proveedor", "error");
 
                 }
             }
@@ -72,20 +69,20 @@ function createConceptoPago() {
     } else {
         $.ajax({
             type: 'POST',
-            url: "https://localhost:5001/api/ConceptoPago/Crear",
-            data: JSON.stringify(descripcion),
+            url: "https://localhost:5001/api/Provedor/Crear",
+            data: JSON.stringify({ nombre: name, activo: true, tipoPersonaId: tipoPersona, documento: documento }),
             contentType: "application/json",
             dataType: "json",
             statusCode: {
                 200: function () {
                     console.log("OK");
-                    swal("Exito", "Concepto Creado", "success");
-                    $('#crearConceptoModal').modal('hide');
+                    swal("Exito", "Proveedor Creado", "success");
+                    $('#crearProveedorModal').modal('hide');
                     getConceptoPagos();
 
                 },
                 400: function () {
-                    swal("Error", "Fallo al Crear Concepto", "error");
+                    swal("Error", "Fallo al Crear Proveedor", "error");
 
                 }
             }
@@ -96,7 +93,7 @@ function createConceptoPago() {
 
 function getRows(item) {
     console.log(item);
-    var row = "<tr><td>" + item.nombre + "</td><td>" + item.tipoPersonaName + "</td><td>" + item.documento +"</td><td>"+ item.balance +"<td><button type='button' class='btn btn-primary' onclick='showDeleteProveedor(" + item.id + ")'" + getDataFields(item.id, item.descripcion) + ">Eliminar </button >" + getEditButton(item.id, item.descripcion) + "</td>" + "</tr>";
+    var row = "<tr><td>" + item.nombre + "</td><td>" + item.tipoPersonaName + "</td><td>" + item.documento + "</td><td>" + item.balance + "<td><button type='button' class='btn btn-primary' onclick='showDeleteProveedor(" + item.id + ")'" + getDataFields(item.id, item.descripcion) + ">Eliminar </button >" + getEditButton(item) + "</td>" + "</tr>";
     return row;
 }
 
@@ -104,9 +101,9 @@ function getDataFields(id, text) {
     return " data-id='" + id + " data-name='" + text + "'  ";
 }
 
-function getEditButton(id, description) {
-    if (id > 0) {
-        return "<button type='button' id='editButton' class='btn btn-primary' data-toggle='modal' data-target='#crearConceptoModal' data-id='" + id + "' data-name='" + description + "'>Editar</button>";
+function getEditButton(item) {
+    if (item.id > 0) {
+        return "<button type='button' id='editButton' class='btn btn-primary' data-toggle='modal' data-target='#crearProveedorModal' data-id='" + item.id + "' data-nombre='" + item.nombre + "' data-tipoId='" + item.tipoPersonaId + "'>Editar</button>";
     }
 
     return "";
@@ -157,7 +154,7 @@ function deleteProveedor(id) {
             200: function () {
                 console.log("OK");
                 swal("Exito", "Proveedor Eliminado", "success");
-                $('#crearConceptoModal').modal('hide');
+                $('#crearProveedorModal').modal('hide');
                 getConceptoPagos();
 
             },

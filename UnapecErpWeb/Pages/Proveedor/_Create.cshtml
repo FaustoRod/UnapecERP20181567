@@ -1,0 +1,42 @@
+﻿@using UnapecErpData.Enums
+@model UnapecErpData.Model.Proveedor
+
+<div class="modal fade" id="crearProveedorModal" tabindex="-1" role="dialog" aria-labelledby="crearProveedorModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="crearProveedorModal">Crear Proveedor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.HiddenFor(x => x.Id)
+                <form>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <input asp-for="Nombre" class="form-control"/>
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TipoPersonaId" class="control-label"></label>
+                        <select asp-for="TipoPersonaId" class="form-control" asp-items="Html.GetEnumSelectList<TipoPersona>()"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Documento" class="control-label"></label>
+                        <input asp-for="Documento" class="form-control"/>
+                        <span asp-validation-for="Documento" class="text-danger"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="createProveedor()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
