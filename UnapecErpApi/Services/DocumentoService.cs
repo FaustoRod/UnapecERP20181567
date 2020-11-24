@@ -7,11 +7,12 @@ using UnapecErpApi.Context;
 using UnapecErpApi.Interfaces;
 using UnapecErpData.Dto;
 using UnapecErpData.Model;
+using UnapecErpData.ViewModel;
 using EstadoDocumento = UnapecErpData.Enums.EstadoDocumento;
 
 namespace UnapecErpApi.Services
 {
-    public class DocumentoService:IDocumentoService
+    public class DocumentoService : IDocumentoService
     {
         private readonly ErpDbContext _context;
         private readonly IProvedorService _provedorService;
@@ -25,7 +26,7 @@ namespace UnapecErpApi.Services
         public async Task<bool> Save(Documento entity)
         {
             if (entity == null) return false;
-            entity.EstadoDocumentoId = (int) EstadoDocumento.Pendiente;
+            entity.EstadoDocumentoId = (int)EstadoDocumento.Pendiente;
             entity.FechaCreacion = entity.FechaModificacion = DateTime.Now;
             _context.Documentos.Add(entity);
             try
@@ -65,9 +66,9 @@ namespace UnapecErpApi.Services
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task<IList<Documento>> GetAll() => await _context.Documentos.ToListAsync();
+        public async Task<IList<Documento>> GetAll() => await _context.Documentos.Include(x => x.Proveedor).ToListAsync();
 
-        public async Task<Documento> GetSingle(int id) => await _context.Documentos.FindAsync(id);
+        public async Task<Documento> GetSingle(int id) => await _context.Documentos.Include(x => x.Proveedor).SingleOrDefaultAsync(x => x.Id.Equals(id));
 
         public Task<bool> Delete(int id)
         {
@@ -94,7 +95,7 @@ namespace UnapecErpApi.Services
 
         public async Task<IList<Documento>> SearchDocumentos(DocumentSearchDto documento)
         {
-            if(documento == null) return new List<Documento>();
+            if (documento == null) return new List<Documento>();
             if (!string.IsNullOrEmpty(documento.Numero))
             {
                 return await _context.Documentos.Where(x => x.Numero.Contains(documento.Numero)).ToListAsync();
@@ -112,6 +113,23 @@ namespace UnapecErpApi.Services
 
             return await _context.Documentos.Where(x => documento.EstadoDocumentoId == (int)EstadoDocumento.Todos || x.EstadoDocumentoId.Equals(documento.EstadoDocumentoId)).ToListAsync();
 
+        }
+
+        public async Task<IList<DocumentoViewModel>> GetDocumentos()
+        {
+            var list = await GetAll();
+
+            return (from d in list
+                    select new DocumentoViewModel
+                    {
+                        Proveedor = d.Proveedor.Nombre,
+                        Numero = d.Numero,
+                        Factura = d.NumeroFactura,
+                        Monto = d.Monto,
+                        Estado = ((EstadoDocumento)d.EstadoDocumentoId).ToString(),
+                        Fecha = d.Fecha.ToString("d"),
+                        Id = d.Id
+                    }).ToList();
         }
     }
 }

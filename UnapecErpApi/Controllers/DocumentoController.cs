@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using UnapecErpApi.Interfaces;
 using UnapecErpData.Dto;
 using UnapecErpData.Model;
+using UnapecErpData.ViewModel;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,9 +24,9 @@ namespace UnapecErpApi.Controllers
 
         // GET: api/<DocumentoController>
         [HttpGet]
-        public async Task<IList<Documento>> Get()
+        public async Task<IList<DocumentoViewModel>> Get()
         {
-            return await _service.GetAll();
+            return await _service.GetDocumentos();
         }
 
         // GET api/<DocumentoController>/5

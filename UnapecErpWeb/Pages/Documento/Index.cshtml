@@ -1,0 +1,36 @@
+﻿@page
+@model UnapecErpWeb.Pages.Documento.IndexModel
+
+<p>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Documento[0].Numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Documento[0].Factura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Documento[0].Proveedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Documento[0].Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Documento[0].Monto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Documento[0].Estado)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="documentosList">
+    </tbody>
+</table>
+
+@section Scripts{
+    <script src="js/Documentos.js"></script>
+}
