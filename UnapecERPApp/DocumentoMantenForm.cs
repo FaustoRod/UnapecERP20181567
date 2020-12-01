@@ -94,8 +94,7 @@ namespace UnapecERPApp
                 ProveedorId = ProvedorId,
                 Numero = txtNumero.Text.Trim(),
                 NumeroFactura = txtFactura.Text.Trim(),
-                Monto = 0,
-                Fecha = DateTime.Now,
+                FechaDesde = DateTime.Now,
                 //FechaCreacion = DateTime.Now,
                 //FechaModificacion = DateTime.Now,
                 EstadoDocumentoId = (int)cbEstadoDocumento.SelectedValue

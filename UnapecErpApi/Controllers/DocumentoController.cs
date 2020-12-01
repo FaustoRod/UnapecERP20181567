@@ -52,9 +52,9 @@ namespace UnapecErpApi.Controllers
             return result ? (IActionResult)Ok() : BadRequest();
         }
         [HttpPost("Buscar")]
-        public async Task<IList<Documento>> PostBuscar([FromBody] DocumentSearchDto documento)
+        public async Task<IList<DocumentoViewModel>> PostBuscar([FromBody] DocumentSearchDto documento)
         {
-            return await _service.SearchDocumentos(documento);
+            return await _service.SearchDocumentosNew(documento);
         }
 
         // PUT api/<DocumentoController>/5

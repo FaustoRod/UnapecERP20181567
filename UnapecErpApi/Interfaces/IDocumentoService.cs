@@ -10,6 +10,7 @@ namespace UnapecErpApi.Interfaces
     {
         Task<bool> Pagar(int id);
         Task<IList<Documento>> SearchDocumentos(DocumentSearchDto documento);
+        Task<IList<DocumentoViewModel>> SearchDocumentosNew(DocumentSearchDto documento);
         Task<IList<DocumentoViewModel>> GetDocumentos();
     }
 }

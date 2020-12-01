@@ -115,21 +115,46 @@ namespace UnapecErpApi.Services
 
         }
 
+        public async Task<IList<DocumentoViewModel>> SearchDocumentosNew(DocumentSearchDto documento)
+        {
+            if (documento == null) return null;
+            if (!string.IsNullOrEmpty(documento.Numero))
+            {
+                return GetDocumentoViewModel(await _context.Documentos.Where(x =>(documento.EstadoDocumentoId.Equals((EstadoDocumento.Todos)) || x.EstadoDocumentoId.Equals(documento.EstadoDocumentoId)) 
+                                                                                 && x.Numero.Contains(documento.Numero) ).ToListAsync());
+            }
+
+            if (!string.IsNullOrEmpty(documento.NumeroFactura))
+            {
+                return GetDocumentoViewModel(await _context.Documentos.Where(x => (documento.EstadoDocumentoId.Equals((EstadoDocumento.Todos)) || x.EstadoDocumentoId.Equals(documento.EstadoDocumentoId)) 
+                                                                                  && x.NumeroFactura.Contains(documento.NumeroFactura)).ToListAsync());
+            }
+
+            return GetDocumentoViewModel(await _context.Documentos.Where(x =>
+                (documento.EstadoDocumentoId.Equals((EstadoDocumento.Todos)) ||
+                 x.EstadoDocumentoId.Equals(documento.EstadoDocumentoId)) && x.Fecha >= documento.FechaDesde && x.Fecha <= documento.FechaHasta).ToListAsync());
+        }
+
         public async Task<IList<DocumentoViewModel>> GetDocumentos()
         {
             var list = await GetAll();
 
-            return (from d in list
+            return GetDocumentoViewModel(list);
+        }
+
+        public IList<DocumentoViewModel> GetDocumentoViewModel(IList<Documento> documentos)
+        {
+            return (from d in documentos
                     select new DocumentoViewModel
-                    {
-                        Proveedor = d.Proveedor.Nombre,
-                        Numero = d.Numero,
-                        Factura = d.NumeroFactura,
-                        Monto = d.Monto,
-                        Estado = ((EstadoDocumento)d.EstadoDocumentoId).ToString(),
-                        Fecha = d.Fecha.ToString("d"),
-                        Id = d.Id
-                    }).ToList();
+                {
+                    Proveedor = d.Proveedor.Nombre,
+                    Numero = d.Numero,
+                    Factura = d.NumeroFactura,
+                    Monto = d.Monto,
+                    Estado = ((EstadoDocumento)d.EstadoDocumentoId).ToString(),
+                    Fecha = d.Fecha.ToString("d"),
+                    Id = d.Id
+                }).ToList();
         }
     }
 }
