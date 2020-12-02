@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using UnapecErpApi.Interfaces;
 using UnapecErpData.Dto;
 using UnapecErpData.Model;
@@ -35,6 +36,21 @@ namespace UnapecErpApi.Controllers
                 Console.WriteLine(e);
                 return null;
             }   
+        }
+
+        [HttpGet("OptionList")]
+        public async Task<SelectList> GetList()
+        {
+            try
+            {
+                return new SelectList(await _service.GetAll(),"Id", "Nombre");
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
         }
 
         // GET api/<ProvedorController>/5

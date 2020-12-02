@@ -9,5 +9,6 @@
         public string Fecha { get; set; }
         public decimal Monto { get; set; }
         public string Estado { get; set; }
+        public int EstadoId { get; set; }
     }
 }

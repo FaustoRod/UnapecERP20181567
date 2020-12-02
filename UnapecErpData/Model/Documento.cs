@@ -6,12 +6,14 @@ namespace UnapecErpData.Model
 {
     public class Documento:BaseModel
     {
+        [Display(Name = "Proveedor")]
         public int ProveedorId { get; set; }
         [MaxLength(8)]
         [Required]
         public string Numero { get; set; }
         [Required]
         [MaxLength(8)]
+        [Display(Name = "No. Factura")]
         public string NumeroFactura { get; set; }
         [Required]
         public DateTime Fecha { get; set; }

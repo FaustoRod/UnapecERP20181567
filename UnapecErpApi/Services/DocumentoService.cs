@@ -120,19 +120,21 @@ namespace UnapecErpApi.Services
             if (documento == null) return null;
             if (!string.IsNullOrEmpty(documento.Numero))
             {
-                return GetDocumentoViewModel(await _context.Documentos.Where(x =>(documento.EstadoDocumentoId.Equals((EstadoDocumento.Todos)) || x.EstadoDocumentoId.Equals(documento.EstadoDocumentoId)) 
-                                                                                 && x.Numero.Contains(documento.Numero) ).ToListAsync());
+                return GetDocumentoViewModel(await _context.Documentos.Include(x => x.Proveedor).Where(x => (documento.EstadoDocumentoId.Equals((EstadoDocumento.Todos)) || x.EstadoDocumentoId.Equals(documento.EstadoDocumentoId))
+                                                                                 && x.Numero.Contains(documento.Numero)).ToListAsync());
             }
 
             if (!string.IsNullOrEmpty(documento.NumeroFactura))
             {
-                return GetDocumentoViewModel(await _context.Documentos.Where(x => (documento.EstadoDocumentoId.Equals((EstadoDocumento.Todos)) || x.EstadoDocumentoId.Equals(documento.EstadoDocumentoId)) 
-                                                                                  && x.NumeroFactura.Contains(documento.NumeroFactura)).ToListAsync());
+                return GetDocumentoViewModel(await _context.Documentos.Include(x => x.Proveedor).Where(x => (documento.EstadoDocumentoId.Equals((EstadoDocumento.Todos)) || x.EstadoDocumentoId.Equals(documento.EstadoDocumentoId))
+                                                                                                            && x.NumeroFactura.Contains(documento.NumeroFactura)).ToListAsync());
             }
 
-            return GetDocumentoViewModel(await _context.Documentos.Where(x =>
-                (documento.EstadoDocumentoId.Equals((EstadoDocumento.Todos)) ||
-                 x.EstadoDocumentoId.Equals(documento.EstadoDocumentoId)) && x.Fecha >= documento.FechaDesde && x.Fecha <= documento.FechaHasta).ToListAsync());
+            var isTodos = documento.EstadoDocumentoId.Equals((int)EstadoDocumento.Todos);
+            //return GetDocumentoViewModel(await _context.Documentos.Include(x => x.Proveedor).Where(x => x.Fecha >= documento.FechaDesde.Date && x.Fecha.Date <= documento.FechaHasta.Date).ToListAsync());
+            return GetDocumentoViewModel(await _context.Documentos.Include(x => x.Proveedor).Where(x =>
+                (isTodos ||
+                 x.EstadoDocumentoId.Equals(documento.EstadoDocumentoId)) && x.Fecha >= documento.FechaDesde.Date && x.Fecha.Date <= documento.FechaHasta.Date).ToListAsync());
         }
 
         public async Task<IList<DocumentoViewModel>> GetDocumentos()
@@ -144,17 +146,19 @@ namespace UnapecErpApi.Services
 
         public IList<DocumentoViewModel> GetDocumentoViewModel(IList<Documento> documentos)
         {
+            if (documentos == null || !documentos.Any()) return new List<DocumentoViewModel>();
             return (from d in documentos
                     select new DocumentoViewModel
-                {
-                    Proveedor = d.Proveedor.Nombre,
-                    Numero = d.Numero,
-                    Factura = d.NumeroFactura,
-                    Monto = d.Monto,
-                    Estado = ((EstadoDocumento)d.EstadoDocumentoId).ToString(),
-                    Fecha = d.Fecha.ToString("d"),
-                    Id = d.Id
-                }).ToList();
+                    {
+                        Proveedor = d.Proveedor.Nombre,
+                        Numero = d.Numero,
+                        Factura = d.NumeroFactura,
+                        Monto = d.Monto,
+                        Estado = ((EstadoDocumento)d.EstadoDocumentoId).ToString(),
+                        Fecha = d.Fecha.ToString("d"),
+                        Id = d.Id,
+                        EstadoId = d.EstadoDocumentoId
+                    }).ToList();
         }
     }
 }

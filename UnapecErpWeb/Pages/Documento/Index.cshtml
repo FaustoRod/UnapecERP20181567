@@ -1,5 +1,6 @@
 ﻿@page
-@using UnapecErpData.Enums
+@using UnapecErpData.Model
+@using EstadoDocumento = UnapecErpData.Enums.EstadoDocumento
 @model UnapecErpWeb.Pages.Documento.IndexModel
 
 <div class="container" style="margin-bottom: 25px;">
@@ -39,12 +40,14 @@
                 </div>
             </div>
             <div class="form-group row col-md-4">
-                <div class="col-md-8 offset-md-4">
+                <div class="col-md-4">
                     <button type="button" class="btn btn-primary" id="btnBuscarDocumento" onclick="searchDocumentos()">Buscar</button>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary" data-toggle='modal' data-target='#crearDocumentoModal'>Nuevo</button>
                 </div>
             </div>
         </div>
-
     </form>
 </div>
 <table class="table">
@@ -74,7 +77,8 @@
     <tbody id="documentosList">
     </tbody>
 </table>
-
+<partial name="_Create" model="new Documento{Fecha = DateTime.Today}"/>
 @section Scripts{
     <script src="js/Documentos.js"></script>
+    @*<script src="js/CrearDocumento.js"></script>*@
 }
