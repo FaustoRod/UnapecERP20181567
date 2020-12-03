@@ -7,15 +7,15 @@
     <form>
         <div class="form-row">
             <div class="form-group row col-md-4">
-                <label asp-for="DocumentoSearch.Numero" class="col-md-4 col-form-label"></label>
+                <label asp-for="DocumentoSearch.FechaDesde" class="col-md-4 col-form-label"></label>
                 <div class="col-md-8">
-                    <input asp-for="DocumentoSearch.Numero" class="form-control" />
+                    <input asp-for="DocumentoSearch.FechaDesde" class="form-control" type="date" min="2020-01-01" max="@DateTime.Today.AddDays(-30).ToString("yyyy-MM-dd")"/>
                 </div>
             </div>
             <div class="form-group row col-md-4">
-                <label asp-for="DocumentoSearch.NumeroFactura" class="col-md-4 col-form-label"></label>
+                <label asp-for="DocumentoSearch.FechaHasta" class="col-md-4 col-form-label"></label>
                 <div class="col-md-8">
-                    <input asp-for="DocumentoSearch.NumeroFactura" class="form-control" />
+                    <input asp-for="DocumentoSearch.FechaHasta" class="form-control" type="date" min="2020-01-01" max="@DateTime.Today.AddDays(-30).ToString("yyyy-MM-dd")"/>
                 </div>
             </div>
             <div class="form-group row col-md-4">
@@ -27,24 +27,10 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group row col-md-4">
-                <label asp-for="DocumentoSearch.FechaDesde" class="col-md-4 col-form-label"></label>
-                <div class="col-md-8">
-                    <input asp-for="DocumentoSearch.FechaDesde" class="form-control"/>
-                </div>
-            </div>
-            <div class="form-group row col-md-4">
-                <label asp-for="DocumentoSearch.FechaHasta" class="col-md-4 col-form-label"></label>
-                <div class="col-md-8">
-                    <input asp-for="DocumentoSearch.FechaHasta" class="form-control"/>
-                </div>
-            </div>
+
             <div class="form-group row col-md-4">
                 <div class="col-md-4">
                     <button type="button" class="btn btn-primary" id="btnBuscarDocumento" onclick="searchDocumentos()">Buscar</button>
-                </div>
-                <div class="col-md-4">
-                    <button type="button" class="btn btn-primary" data-toggle='modal' data-target='#crearDocumentoModal'>Nuevo</button>
                 </div>
             </div>
         </div>
@@ -67,9 +53,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Documento[0].Monto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Documento[0].Estado)
             </th>
             <th></th>
         </tr>

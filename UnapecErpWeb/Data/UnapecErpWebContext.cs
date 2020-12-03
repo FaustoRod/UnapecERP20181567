@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UnapecErpData.Model;
+using UnapecErpData.ViewModel;
 
 namespace UnapecErpWeb.Data
 {
@@ -19,5 +20,7 @@ namespace UnapecErpWeb.Data
         public DbSet<UnapecErpData.Model.Proveedor> Proveedor { get; set; }
 
         public DbSet<UnapecErpData.Model.Documento> Documento { get; set; }
+
+        public DbSet<UnapecErpData.ViewModel.DocumentoViewModel> DocumentoViewModel { get; set; }
     }
 }

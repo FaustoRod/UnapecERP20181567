@@ -1,4 +1,6 @@
-﻿namespace UnapecErpData.ViewModel
+﻿using UnapecErpData.Enums;
+
+namespace UnapecErpData.ViewModel
 {
     public class DocumentoViewModel
     {
@@ -10,5 +12,7 @@
         public decimal Monto { get; set; }
         public string Estado { get; set; }
         public int EstadoId { get; set; }
+        public int AsientoId { get; set; }
+        public EstadoAsiento EstadoAsiento => AsientoId > 0 ? EstadoAsiento.Enviado : EstadoAsiento.NoEnviado;
     }
 }

@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
     getDocumentos();
-    //setDates();
     getProveedores();
 
     $("#crearDocumentoModal").on("hidden.bs.modal",
@@ -17,8 +16,6 @@
             //console.log(getDate());
             $("#Fecha").val(getDate());
             getProveedores();
-            //$("#Documento").val("");
-            //$("#Id").val(0);
         });
 });
 

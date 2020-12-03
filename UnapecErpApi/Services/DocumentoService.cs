@@ -137,6 +137,14 @@ namespace UnapecErpApi.Services
                  x.EstadoDocumentoId.Equals(documento.EstadoDocumentoId)) && x.Fecha >= documento.FechaDesde.Date && x.Fecha.Date <= documento.FechaHasta.Date).ToListAsync());
         }
 
+        public async Task<IList<DocumentoViewModel>> SearchDocumentosAsiento(DocumentSearchDto documento)
+        {
+            //return GetDocumentoViewModel(await _context.Documentos.Include(x => x.Proveedor).Where(x => x.Fecha >= documento.FechaDesde.Date && x.Fecha.Date <= documento.FechaHasta.Date).ToListAsync());
+            return GetDocumentoViewModel(await _context.Documentos.Include(x => x.Proveedor).Where(x =>
+                x.Fecha >= documento.FechaDesde.Date && x.Fecha.Date <= documento.FechaHasta.Date
+                && (x.AsientoContableIdNumero == null || x.AsientoContableIdNumero <= 0)).ToListAsync());
+        }
+
         public async Task<IList<DocumentoViewModel>> GetDocumentos()
         {
             var list = await GetAll();
@@ -157,7 +165,8 @@ namespace UnapecErpApi.Services
                         Estado = ((EstadoDocumento)d.EstadoDocumentoId).ToString(),
                         Fecha = d.Fecha.ToString("d"),
                         Id = d.Id,
-                        EstadoId = d.EstadoDocumentoId
+                        EstadoId = d.EstadoDocumentoId,
+                        AsientoId = d.AsientoContableIdNumero ?? 0
                     }).ToList();
         }
     }

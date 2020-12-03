@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Newtonsoft.Json;
 using UnapecErpApi.Interfaces;
 using UnapecErpData.Dto;
 using UnapecErpData.Model;
@@ -55,6 +58,49 @@ namespace UnapecErpApi.Controllers
         public async Task<IList<DocumentoViewModel>> PostBuscar([FromBody] DocumentSearchDto documento)
         {
             return await _service.SearchDocumentosNew(documento);
+        }
+        [HttpPost("BuscarAsiento")]
+        public async Task<IList<DocumentoViewModel>> PostBuscarAsiento([FromBody] DocumentSearchDto documento)
+        {
+            return await _service.SearchDocumentosAsiento(documento);
+        }
+        [HttpPost("EnviarAsiento")]
+        public async Task<bool> EnviarAsiento([FromBody] DocumentSearchDto documento)
+        {
+            using (var client = new HttpClient())
+            {
+                //client.BaseAddress = new Uri("https://plutus.azure-api.net/api");
+                var json = JsonConvert.SerializeObject(new
+                {
+                    descripcion =
+                        $"CUENTAS POR PAGAR DESDE {documento.FechaDesde.ToString("d")} - HASTA {documento.FechaHasta.ToString("d")}",
+                    idCuentaAuxiliar = 5,
+                    inicioPeriodo = documento.FechaDesde.ToString("yyyy-MM-dd"),
+                    finPeriodo = documento.FechaHasta.ToString("yyyy-MM-dd"),
+                    asientos = new[]
+                    {
+                        new
+                        {
+                            idCuenta = 81,
+                            monto = 500
+                        }
+                    }
+                });
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var result = await client.PostAsync("https://plutus.azure-api.net/api/AccountingSeat/InsertAccountingSeats", content);
+                if (result.IsSuccessStatusCode)
+                {
+                    var id = await result.Content.ReadAsStringAsync();
+                    Debug.Print(id);
+                }
+                else
+                {
+                    Debug.Print(result.StatusCode.ToString());
+
+                }
+            }
+            return true;
         }
 
         // PUT api/<DocumentoController>/5

@@ -21,6 +21,7 @@ namespace UnapecErpData.Model
         [Column(TypeName = "decimal(9,2)")]
         public decimal Monto { get; set; }
         public int EstadoDocumentoId { get; set; }
+        public int? AsientoContableIdNumero { get; set; }
         public virtual Proveedor Proveedor { get; set; }
         public virtual EstadoDocumento EstadoDocumento { get; set; }
     }
