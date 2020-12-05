@@ -19,7 +19,7 @@
 });
 
 function getProveedores() {
-    $.get("https://localhost:5001/api/Provedor/OptionList", function (data) {
+    $.get("https://unapec20181567.azurewebsites.net/api/Provedor/OptionList", function (data) {
         //console.log(data[0].descripcion);
         data.forEach(element => addOption(element));
 
@@ -50,7 +50,7 @@ function createDocumento() {
     if (id > 0) {
         $.ajax({
             type: 'PUT',
-            url: "https://localhost:5001/api/Documento/Crear",
+            url: "https://unapec20181567.azurewebsites.net/api/Documento/Crear",
             data: JSON.stringify({
                 proveedorId: proveedorId,
                 numero: numero,
@@ -75,7 +75,7 @@ function createDocumento() {
     } else {
         $.ajax({
             type: 'POST',
-            url: "https://localhost:5001/api/Documento/Crear",
+            url: "https://unapec20181567.azurewebsites.net/api/Documento/Crear",
             data: JSON.stringify({
                 proveedorId: proveedorId,
                 numero: numero,

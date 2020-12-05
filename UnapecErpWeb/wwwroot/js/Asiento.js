@@ -9,7 +9,7 @@ function searchDocumentos() {
     console.log(hasta.substring(0, 10));
     $.ajax({
         type: 'POST',
-        url: "https://localhost:5001/api/Documento/BuscarAsiento",
+        url: "https://unapec20181567.azurewebsites.net/api/Documento/BuscarAsiento",
         contentType: "application/json",
         data: JSON.stringify({ numero: "", numeroFactura: "", fechaDesde: desde, fechaHasta: hasta, estadoDocumentoId: 0 }),
         dataType: "json",
@@ -40,7 +40,7 @@ function enviarAsientos() {
     //console.log(hasta);
     $.ajax({
         type: 'POST',
-        url: "https://localhost:5001/api/Documento/EnviarAsiento",
+        url: "https://unapec20181567.azurewebsites.net/api/Documento/EnviarAsiento",
         contentType: "application/json",
         data: JSON.stringify({ numero: "", numeroFactura: "", fechaDesde: desde, fechaHasta: hasta, estadoDocumentoId: 0 }),
         dataType: "json",

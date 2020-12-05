@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
@@ -27,9 +28,20 @@ namespace UnapecErpApi.Controllers
 
         // GET: api/<DocumentoController>
         [HttpGet]
-        public async Task<IList<DocumentoViewModel>> Get()
+        public async Task<JsonResult> Get()
+        //public async Task<IList<DocumentoViewModel>> Get()
         {
-            return await _service.GetDocumentos();
+            try
+            {
+                return new JsonResult(await _service.GetDocumentos());
+
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e);
+
+            }
+
         }
 
         // GET api/<DocumentoController>/5

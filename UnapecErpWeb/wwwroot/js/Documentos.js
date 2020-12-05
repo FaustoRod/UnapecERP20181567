@@ -20,7 +20,7 @@
 });
 
 function getDocumentos() {
-    $.get("https://localhost:5001/api/Documento", function (data) {
+    $.get("https://unapec20181567.azurewebsites.net/api/Documento", function (data) {
         //console.log(data[0].descripcion);
         //alert(data);
         $("#documentosList").empty();
@@ -39,7 +39,7 @@ function searchDocumentos() {
 
     $.ajax({
         type: 'POST',
-        url: "https://localhost:5001/api/Documento/Buscar/",
+        url: "https://unapec20181567.azurewebsites.net/api/Documento/Buscar/",
         contentType: "application/json",
         data: JSON.stringify({ numero: numero, numeroFactura: factura, fechaDesde: desde, fechaHasta: hasta, estadoDocumentoId: estado }),
         dataType: "json",
@@ -127,7 +127,7 @@ function showPagarDocumento(id) {
 function pagarDocumento(id) {
     $.ajax({
         type: 'POST',
-        url: "https://localhost:5001/api/Documento/Pagar/" + id,
+        url: "https://unapec20181567.azurewebsites.net/api/Documento/Pagar/" + id,
         contentType: "application/json",
         dataType: "json",
         statusCode: {
@@ -152,7 +152,7 @@ function setDates() {
 
 
 function getProveedores() {
-    $.get("https://localhost:5001/api/Provedor/OptionList", function (data) {
+    $.get("https://unapec20181567.azurewebsites.net/api/Provedor/OptionList", function (data) {
         //console.log(data[0].descripcion);
         data.forEach(element => addOption(element));
 
@@ -183,7 +183,7 @@ function createDocumento() {
     if (id > 0) {
         $.ajax({
             type: 'PUT',
-            url: "https://localhost:5001/api/Documento/Crear",
+            url: "https://unapec20181567.azurewebsites.net/api/Documento/Crear",
             data: JSON.stringify({
                 proveedorId: proveedorId,
                 numero: numero,
@@ -208,7 +208,7 @@ function createDocumento() {
     } else {
         $.ajax({
             type: 'POST',
-            url: "https://localhost:5001/api/Documento/Crear",
+            url: "https://unapec20181567.azurewebsites.net/api/Documento/Crear",
             data: JSON.stringify({
                 proveedorId: proveedorId,
                 numero: numero,

@@ -30,7 +30,7 @@
 });
 
 function getConceptoPagos() {
-    $.get("https://localhost:5001/api/ConceptoPago", function (data) {
+    $.get("https://unapec20181567.azurewebsites.net/api/ConceptoPago", function (data) {
         //console.log(data[0].descripcion);
         //alert(data);
         $("#conceptosList").empty();
@@ -51,7 +51,7 @@ function createConceptoPago() {
     if (id.length > 0) {
         $.ajax({
             type: 'PUT',
-            url: "https://localhost:5001/api/ConceptoPago/",
+            url: "https://unapec20181567.azurewebsites.net/api/ConceptoPago/",
             data: JSON.stringify({ id: id, descripcion: name, activo:true}),
             contentType: "application/json",
             dataType: "json",
@@ -72,7 +72,7 @@ function createConceptoPago() {
     } else {
         $.ajax({
             type: 'POST',
-            url: "https://localhost:5001/api/ConceptoPago/Crear",
+            url: "https://unapec20181567.azurewebsites.net/api/ConceptoPago/Crear",
             data: JSON.stringify(descripcion),
             contentType: "application/json",
             dataType: "json",
@@ -150,7 +150,7 @@ function showDeleteConcepto(id) {
 function deleteConcepto(id) {
     $.ajax({
         type: 'DELETE',
-        url: "https://localhost:5001/api/ConceptoPago/" + id,
+        url: "https://unapec20181567.azurewebsites.net/api/ConceptoPago/" + id,
         contentType: "application/json",
         dataType: "json",
         statusCode: {
@@ -176,7 +176,7 @@ function editConcepto(id) {
 }
 
 function getConcepto(id) {
-    $.get("https://localhost:5001/api/ConceptoPago/" + id, function (data) {
+    $.get("https://unapec20181567.azurewebsites.net/api/ConceptoPago/" + id, function (data) {
         //console.log(data[0].descripcion);
         //alert(data);
         console.log(data);

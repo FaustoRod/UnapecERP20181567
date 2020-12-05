@@ -25,7 +25,7 @@
 });
 
 function getConceptoPagos() {
-    $.get("https://localhost:5001/api/Provedor", function (data) {
+    $.get("https://unapec20181567.azurewebsites.net/api/Provedor", function (data) {
         //console.log(data[0].descripcion);
         //alert(data);
         $("#provedorList").empty();
@@ -45,7 +45,7 @@ function createProveedor() {
     if (id.length > 0) {
         $.ajax({
             type: 'PUT',
-            url: "https://localhost:5001/api/Provedor/",
+            url: "https://unapec20181567.azurewebsites.net/api/Provedor/",
             data: JSON.stringify({ id: id, nombre: name, activo: true, tipoPersonaId: tipoPersona, documento: documento }),
             contentType: "application/json",
             dataType: "json",
@@ -66,7 +66,7 @@ function createProveedor() {
     } else {
         $.ajax({
             type: 'POST',
-            url: "https://localhost:5001/api/Provedor/Crear",
+            url: "https://unapec20181567.azurewebsites.net/api/Provedor/Crear",
             data: JSON.stringify({ nombre: name, activo: true, tipoPersonaId: tipoPersona, documento: documento }),
             contentType: "application/json",
             dataType: "json",
@@ -144,7 +144,7 @@ function showDeleteProveedor(id) {
 function deleteProveedor(id) {
     $.ajax({
         type: 'DELETE',
-        url: "https://localhost:5001/api/Provedor/" + id,
+        url: "https://unapec20181567.azurewebsites.net/api/Provedor/" + id,
         contentType: "application/json",
         dataType: "json",
         statusCode: {
@@ -170,7 +170,7 @@ function editConcepto(id) {
 }
 
 function getConcepto(id) {
-    $.get("https://localhost:5001/api/ConceptoPago/" + id, function (data) {
+    $.get("https://unapec20181567.azurewebsites.net/api/ConceptoPago/" + id, function (data) {
         //console.log(data[0].descripcion);
         //alert(data);
 

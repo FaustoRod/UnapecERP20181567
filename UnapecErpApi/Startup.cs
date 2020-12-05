@@ -37,9 +37,9 @@ namespace UnapecErpApi
             services.AddControllers();
             services.AddDbContextPool<ErpDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("ErbConnectionString"));
+                options.UseSqlServer(Configuration.GetConnectionString("ProdErbConnectionString"));
             });
-
+            services.AddSwaggerGen();
             services.AddTransient<IConceptoPagoService, ConceptoPagoService>();
             services.AddTransient<IProvedorService, ProvedorService>();
             services.AddTransient<IDocumentoService, DocumentoService>();
@@ -58,7 +58,7 @@ namespace UnapecErpApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseSwagger();
             app.UseHttpsRedirection();
 
             app.UseRouting();
