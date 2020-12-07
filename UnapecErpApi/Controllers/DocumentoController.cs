@@ -88,7 +88,8 @@ namespace UnapecErpApi.Controllers
                         $"CUENTAS POR PAGAR DESDE {documento.FechaDesde.ToString("d")} - HASTA {documento.FechaHasta.ToString("d")}",
                     idCuentaAuxiliar = 5,
                     inicioPeriodo = documento.FechaDesde.ToString("yyyy-MM-dd"),
-                    finPeriodo = documento.FechaHasta.ToString("yyyy-MM-dd"),
+                    finPeriodo = documento.FechaHasta.ToString("yyyy-MM-dd"), 
+                    moneda = "DOP",
                     asientos = new[]
                     {
                         new

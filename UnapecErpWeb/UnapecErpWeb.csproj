@@ -19,4 +19,10 @@
     <ProjectReference Include="..\UnapecErpData\UnapecErpData.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\js\Asiento.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
